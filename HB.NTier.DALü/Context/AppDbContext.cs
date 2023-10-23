@@ -12,7 +12,7 @@ namespace HB.NTier.DAL.Context
     public class AppDbContext:DbContext
     {
 
-
+        public DbSet<Order> Orders { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppUserCategory> AppUserCategories { get; set; }
 

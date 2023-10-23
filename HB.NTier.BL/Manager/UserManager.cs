@@ -17,6 +17,25 @@ namespace HB.NTier.BL.Manager
         {
         }
 
+
+        public override void Add(AppUser entity)
+        {
+            var repo = _uow.GetRepo<AppUser>();
+            var data =  repo.Get(x=>x.UserName == entity.UserName);
+
+            if (data != null)
+            {
+                Console.WriteLine("hata!");
+                return;
+            }
+
+            repo.Add(entity);
+
+
+
+
+            _uow.SaveChanges();
+        }
         public bool Login(string userName, string passsword)
               =>
                 _uow.GetRepo<AppUser>().GetAll(a => a.UserName == userName && a.Password == passsword).Count == 1;
